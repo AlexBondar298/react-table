@@ -2,7 +2,7 @@
 import React, { useEffect, useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import CountriesData from "./COUNTRY.json";
+import DataTable from "./DataTable.json";
 
 import { Accounts } from "./pages/Accounts";
 import { Profiles } from "./pages/Profiles";
@@ -13,18 +13,18 @@ import { useNavigate } from "react-router-dom";
 export const AppContext = createContext();
 
 function App() {
-  const [country, setCountry] = useState(CountriesData);
+  const [data, setData] = useState(DataTable);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [array, setArray] = useState(country);
-
+  
+  const [arrayPagination, setArrayPagination] = useState(data);
+  
   /* Pagination ... */
   const [currentPage, setCurrentPage] = useState(1);
   const [tableLengthPage, setTableLengthPage] = useState(20);
 
   const lastTablePage = currentPage * tableLengthPage;
   const firstTablePage = lastTablePage - tableLengthPage;
-  const totalTableLength = array.length;
+  const totalTableLength = arrayPagination.length;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -37,23 +37,21 @@ function App() {
   const nextPage = (x, y) => {
     if (y === "Accounts") {
       setCurrentPage(1);
-      setArray(x.profileId);
+      setArrayPagination(x.profileId);
       navigate("/profiles_of_selected_account", { replace: true });
     }
     if (y === "Profiles") {
       setCurrentPage(1);
-      setArray(x.campaignId);
+      setArrayPagination(x.campaignId);
       navigate("/campaigns_of_selected_profile", { replace: true });
     }
     if (y === "Campaigns") {
       setCurrentPage(1);
-      setArray(country);
+      setArrayPagination(data);
       navigate("/", { replace: true });
     }
   };
-
-  // console.log("app", currentTable[0].accountId)
-
+  
   // const [country, setCountry] = useState([]);
   // useEffect(() => {
   //   const fetch = async () => {
@@ -73,9 +71,9 @@ function App() {
       ) : (
         <AppContext.Provider
           value={{
-            country,
+            data,
             nextPage,
-            array,
+            array: arrayPagination,
             tableLengthPage,
             totalTableLength,
             paginate,

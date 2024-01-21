@@ -5,13 +5,21 @@ import { Pagination } from "../Pagination";
 
 import { AppContext } from "../../App";
 
-const Countries = ({accountsData}) => {
-  const { country, array = [], nextPage, tableLengthPage, totalTableLength, paginate, firstTablePage, lastTablePage } = useContext(AppContext)
-  
-  const [countriesData, setCountriesData] = useState(country);
+const Countries = ({ accountsData }) => {
+  const {
+    data,
+    array = [],
+    nextPage,
+    tableLengthPage,
+    totalTableLength,
+    paginate,
+    firstTablePage,
+    lastTablePage,
+  } = useContext(AppContext);
+
+  const [countriesData, setCountriesData] = useState(data);
   const [sortData, setSortData] = useState(true);
   const [search, setSearch] = useState("");
-
 
   const sortirovka = (x) => {
     /* функция из=за того что данные содержат null */
@@ -44,7 +52,11 @@ const Countries = ({accountsData}) => {
       <header>
         <h1>{accountsData[0]}</h1>
         <div className={style.search}>
-          <img src="img/search.svg" onClick={(event) => sortirovka(event.target.parentElement.textContent)} alt="sort" />
+          <img
+            src="img/search.svg"
+            onClick={(event) => sortirovka(event.target.parentElement.textContent)}
+            alt="sort"
+          />
           <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={accountsData[2]} />
         </div>
       </header>
@@ -54,20 +66,36 @@ const Countries = ({accountsData}) => {
             <tr>
               <th>
                 {accountsData[1]}
-                <img src="img/sort_icon.svg" onClick={(event) => sortirovka(event.target.parentElement.textContent)} alt="sort" />
+                <img
+                  src="img/sort_icon.svg"
+                  onClick={(event) => sortirovka(event.target.parentElement.textContent)}
+                  alt="sort"
+                />
               </th>
               <th>
                 {accountsData[2]}
-                <img src="img/sort_icon.svg" onClick={(event) => sortirovka(event.target.parentElement.textContent)} alt="sort" />
+                <img
+                  src="img/sort_icon.svg"
+                  onClick={(event) => sortirovka(event.target.parentElement.textContent)}
+                  alt="sort"
+                />
               </th>
               <th>
                 {accountsData[3]}
-                <img src="img/sort_icon.svg" onClick={(event) => sortirovka(event.target.parentElement.textContent)} alt="sort" />
+                <img
+                  src="img/sort_icon.svg"
+                  onClick={(event) => sortirovka(event.target.parentElement.textContent)}
+                  alt="sort"
+                />
               </th>
               {accountsData[4] ? (
                 <th>
                   {accountsData[4]}
-                  <img src="img/sort_icon.svg" onClick={(event) => sortirovka(event.target.parentElement.textContent)} alt="sort" />
+                  <img
+                    src="img/sort_icon.svg"
+                    onClick={(event) => sortirovka(event.target.parentElement.textContent)}
+                    alt="sort"
+                  />
                 </th>
               ) : null}
             </tr>
@@ -79,7 +107,11 @@ const Countries = ({accountsData}) => {
               .filter((elem) => elem[accountsData[2]].toLowerCase().includes(search.toLowerCase()))
               .slice(firstTablePage, lastTablePage)
               .map((elem) => (
-                <tr key={elem.accountId} onClick={() => nextPage(elem, accountsData[0])} style={{ textDecorationLine: "none" }}>
+                <tr
+                  key={elem.accountId}
+                  onClick={() => nextPage(elem, accountsData[0])}
+                  style={{ textDecorationLine: "none" }}
+                >
                   <td>{elem[accountsData[1]]} </td>
                   <td>{elem[accountsData[2]]} </td>
                   <td>{elem[accountsData[3]]}</td>

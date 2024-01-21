@@ -1,0 +1,11 @@
+[33mcommit 05aa4f636ec6e2facdc8b3edcaf380ae8ed50aa5[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: AlexBondar <alexbondar298@gmail.com>
+Date:   Sun Jan 21 17:40:49 2024 +0200
+
+    project v1.0
+
+[33mcommit 9f669295d9db9ec6665859351efb73671308c8eb[m
+Author: AlexBondar <alexbondar298@gmail.com>
+Date:   Thu Jan 18 12:13:31 2024 +0200
+
+    Initialize project using Create React App
