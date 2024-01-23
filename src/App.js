@@ -18,7 +18,6 @@ function App() {
   
   const [arrayPagination, setArrayPagination] = useState(data);
   
-  /* Pagination ... */
   const [currentPage, setCurrentPage] = useState(1);
   const [tableLengthPage, setTableLengthPage] = useState(20);
 
@@ -29,8 +28,6 @@ function App() {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  /* ... Pagination */
 
   const navigate = useNavigate();
 
